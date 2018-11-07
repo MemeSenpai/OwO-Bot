@@ -16,7 +16,7 @@ python-dateutil==2.7.5
 python-dotenv==0.9.1
 pytz==2018.7
 pywin32-ctypes==0.2.0
-requests==2.19.1
+requests==2.20.0
 six==1.11.0
 style==1.1.0
 websockets==3.4
