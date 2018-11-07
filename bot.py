@@ -3,6 +3,8 @@ from discord.ext import commands
 from discord.ext.commands import Bot
 import asyncio
 import requests
+#for token
+import os
 
 Client = discord.Client()
 bot = commands.Bot(command_prefix = "?")
@@ -33,4 +35,4 @@ async def say(ctx):
         await bot.say(ctx.message.content[5:])
         await bot.delete_message(ctx.message)
 
-bot.run(process.env.token)
+bot.run(os.getenv("token"))
