@@ -3,8 +3,7 @@ from discord.ext import commands
 from discord.ext.commands import Bot
 import asyncio
 import requests
-#for token
-import os
+from os import getenv
 
 Client = discord.Client()
 bot = commands.Bot(command_prefix = "?")
@@ -35,4 +34,15 @@ async def say(ctx):
         await bot.say(ctx.message.content[5:])
         await bot.delete_message(ctx.message)
 
-bot.run(os.getenv("token"))
+@bot.group(pass_context = True)
+async def img(ctx):
+    if ctx.invoked_subcommand is None:
+        pass
+        #add so it gets random image
+
+@img.command(pass_context = True)
+async def meme(ctx):
+    pass
+    #return a meme
+
+bot.run(getenv("token"))
