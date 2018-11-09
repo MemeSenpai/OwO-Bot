@@ -46,8 +46,8 @@ async def meme(ctx):
     memeJson = memeReq.json()
     
     emb = discord.Embed(title = "Meme", colour = discord.Colour.blue())
-    emb.description = memeJson.text
-    emb.set_image(url = memeJson.url)
+    emb.description = memeJson["text"]
+    emb.set_image(url = memeJson["url"])
     bot.send_message(ctx.message.channel, "", embed = emb)
 
 bot.run(getenv("token"))
