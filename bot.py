@@ -16,6 +16,7 @@ async def on_ready():
 async def on_message(message):
     if message.author.bot:
         return
+ 
     await bot.process_commands(message)
 
 @bot.command()
@@ -36,18 +37,20 @@ async def say(ctx):
 
 @bot.group(pass_context = True)
 async def img(ctx):
-    if ctx.invoked_subcommand is None:
-        bot.say("Oof!")
+	print("Img worked")
+	if ctx.invoked_subcommand is None:
+		pass
         #add so it gets random image
 
 @img.command(pass_context = True)
 async def meme(ctx):
     memeReq = requests.get("https://some-random-api.ml/meme")
     memeJson = memeReq.json()
+    print(memeJson)
     
     emb = discord.Embed(title = "Meme", colour = discord.Colour.blue(), type = "rich")
-    #emb.description = memeJson["text"]
+    emb.description = memeJson["text"]
     emb.set_image(url = memeJson["url"])
-    bot.send_message(ctx.message.channel, "", embed = emb)
+    await bot.send_message(ctx.message.channel, "", embed = emb)
 
 bot.run(getenv("token"))
