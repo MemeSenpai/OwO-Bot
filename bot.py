@@ -42,7 +42,12 @@ async def img(ctx):
 
 @img.command(pass_context = True)
 async def meme(ctx):
-    pass
-    #return a meme
+    memeReq = requests.get("https://some-random-api.ml/meme")
+    memeJson = memeReq.json()
+    
+    emb = discord.Embed(title = "Meme", colour = discord.Colour.blue())
+    emb.description = memeJson.text
+    emb.set_image(url = memeJson.url)
+    bot.send_message(ctx.message.channel, "", embed = emb)
 
 bot.run(getenv("token"))
